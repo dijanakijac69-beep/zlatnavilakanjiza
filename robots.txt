@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://zlatnavilakanjiza.com/sitemap.xml
