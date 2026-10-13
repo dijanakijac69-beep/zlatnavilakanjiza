@@ -101,6 +101,9 @@
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
+  @keyframes heroReveal { from { opacity: 0; transform: scale(1.08); filter: blur(12px); } to { opacity: 1; transform: scale(1); filter: blur(0); } }
+  .hero-media img { opacity: 0; animation: heroReveal 1.8s cubic-bezier(.22,.61,.36,1) .15s forwards; will-change: opacity, transform, filter; }
+  @media (prefers-reduced-motion: reduce) { .hero-media img { animation: none; opacity: 1; } }
   body { margin: 0; font-family: 'Mulish', system-ui, sans-serif; color: #33302b; background: #f8f2e6; line-height: 1.65; overflow-x: clip; }
   a { color: #7a3b2e; text-decoration: none; }
   a:hover { color: #5c2c22; }
@@ -111,6 +114,15 @@
   .nav-links a { font-size: 14px; font-weight: 600; color: #33302b; }
   .nav-links a:hover { color: #7a3b2e; }
   @media (min-width: 860px) { .nav-links { display: flex; } }
+  .nav-burger { display: none; align-items: center; justify-content: center; width: 42px; height: 42px; border: 1px solid rgba(51,48,43,0.2); background: transparent; border-radius: 12px; cursor: pointer; color: #33302b; flex: none; }
+  .nav-burger svg { width: 22px; height: 22px; display: block; }
+  @media (max-width: 859px) {
+    .nav-burger { display: inline-flex; }
+    .nav-links { position: absolute; top: 100%; left: 0; right: 0; display: none; flex-direction: column; align-items: stretch; gap: 0; background: #faf5ec; border-top: 1px solid rgba(51,48,43,0.08); border-bottom: 1px solid rgba(51,48,43,0.12); padding: 6px 28px 14px; box-shadow: 0 24px 44px -24px rgba(0,0,0,0.3); }
+    .nav-links.open { display: flex; }
+    .nav-links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid rgba(51,48,43,0.07); }
+    .nav-links a:last-child { border-bottom: 0; }
+  }
   .btn-lang { border: 1px solid rgba(51,48,43,0.2); background: transparent; border-radius: 999px; padding: 7px 14px; font-family: 'Mulish', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 1px; color: #33302b; cursor: pointer; }
   .btn-lang:hover { border-color: #7a3b2e; color: #7a3b2e; }
   .zv-reveal { opacity: 1; }
@@ -143,7 +155,7 @@
 <body>
 
 <header style="position: sticky; top: 0; z-index: 50; background: rgba(248,242,230,0.92); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(51,48,43,0.09);">
-  <nav class="wrap" style="padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; gap: 24px;">
+  <nav class="wrap" style="padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; gap: 24px; position: relative;">
     <a href="#top" style="display: flex; align-items: baseline; gap: 9px; margin-right: auto;">
       <span style="font-family: 'Cormorant Garamond', serif; font-size: 25px; font-weight: 700; letter-spacing: 0.5px; color: #7a3b2e; text-transform: uppercase;">Zlatna vila</span>
       <span style="font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: #a08a6a;">Kanjiža</span>
@@ -157,6 +169,7 @@
       <a href="#pitanja" data-en="FAQ">Pitanja</a>
       <a href="#kontakt" data-en="Contact">Kontakt</a>
     </div>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Meni" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
     <button class="btn-lang" id="langBtn" type="button" aria-label="Promeni jezik / Change language">EN</button>
     <a href="tel:+381652177195" style="display: inline-flex; align-items: center; gap: 7px; background: #7a3b2e; color: #f4f1ec; border-radius: 999px; padding: 9px 18px; font-size: 13px; font-weight: 700; letter-spacing: 0.3px;">065 217 7195</a>
   </nav>
@@ -209,7 +222,7 @@
     </div>
     <div class="facts-item" style="display: flex; align-items: center; justify-content: center; gap: 14px; padding: 4px 12px; border-left: 1px solid rgba(122,59,46,0.14);">
       <span style="color: #b8923f; flex: none; display: inline-flex;"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 13l1.5-4.5A2 2 0 018.4 7h7.2a2 2 0 011.9 1.5L19 13v5h-3v-2H8v2H5v-5z"></path><circle cx="7.5" cy="15.5" r="1"></circle><circle cx="16.5" cy="15.5" r="1"></circle></svg></span>
-      <div><div style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #7a3b2e; line-height: 1.05;" data-en="private">privatan</div><div style="font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; color: #8a7c6a;" data-en="parking">parking</div></div>
+      <div><div style="font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 700; color: #7a3b2e; line-height: 1.05;" data-en="garage &amp; parking">garaža i parking</div><div style="font-size: 12px; letter-spacing: 1px; text-transform: uppercase; font-weight: 600; color: #8a7c6a;" data-en="private">privatno</div></div>
     </div>
   </div>
 </section>
@@ -321,9 +334,14 @@
       <h2 style="margin: 0 0 18px; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: clamp(30px, 4vw, 46px); line-height: 1.06; color: #faf7f2;" data-en="Spa, park and Pannonian calm">Banja, park i tišina Panonije</h2>
       <p style="margin: 0 0 16px; color: #d8cdbb; text-wrap: pretty;" data-en="Kanjiža is a well-known spa town on the banks of the Tisza, with thermal springs, a landscaped park and a warm, laid-back atmosphere.">Kanjiža je poznato banjsko-lečilišno mesto na obali Tise, sa termalnim izvorima, uređenim parkom i toplom, opuštenom atmosferom.</p>
       <p style="margin: 0; color: #d8cdbb; text-wrap: pretty;" data-en="Riverside walks, wellness and the calm of a small Pannonian town make it a perfect place to unwind, any time of year.">Šetnje uz reku, wellness i mir malog panonskog grada čine je savršenim mestom za predah, u svako doba godine.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;">
+        <a href="banja-kanjiza.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(240,230,216,0.08); border: 1px solid rgba(240,230,216,0.3); color: #f0e6d8; border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 700;">Banja Kanjiža →</a>
+        <a href="sta-videti-u-kanjizi.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(240,230,216,0.08); border: 1px solid rgba(240,230,216,0.3); color: #f0e6d8; border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 700;">Šta videti →</a>
+        <a href="kako-doci-do-kanjize.html" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(240,230,216,0.08); border: 1px solid rgba(240,230,216,0.3); color: #f0e6d8; border-radius: 999px; padding: 10px 18px; font-size: 14px; font-weight: 700;">Kako doći →</a>
+      </div>
     </div>
     <div style="position: relative; aspect-ratio: 4/3; border-radius: 18px; overflow: hidden;">
-      <img src="assets/kanjiza.webp" width="922" height="692" loading="lazy" alt="Banja Kanjiža – park i termalni izvori u Kanjiži" style="width:100%;height:100%;object-fit:cover;">
+      <img src="assets/kanjiza-grad.webp" width="922" height="692" loading="lazy" alt="Gradska kuća u centru Kanjiže" style="width:100%;height:100%;object-fit:cover;">
     </div>
   </div>
 </section>
@@ -454,5 +472,6 @@
   });
 })();
 </script>
+<script>(function(){var b=document.getElementById('navBurger'),n=document.querySelector('.nav-links');if(b&&n){b.addEventListener('click',function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o);});n.addEventListener('click',function(e){if(e.target.closest('a')){n.classList.remove('open');b.setAttribute('aria-expanded','false');}});}})();</script>
 </body>
 </html>

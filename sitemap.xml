@@ -19,4 +19,22 @@
       <image:caption>Trosobna kuća za odmor Zlatna vila, Kanjiža</image:caption>
     </image:image>
   </url>
+  <url>
+    <loc>https://zlatnavilakanjiza.com/banja-kanjiza.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zlatnavilakanjiza.com/sta-videti-u-kanjizi.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://zlatnavilakanjiza.com/kako-doci-do-kanjize.html</loc>
+    <lastmod>2026-10-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
